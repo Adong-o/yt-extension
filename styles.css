@@ -1,0 +1,90 @@
+/* Main wrapper for video and comments side-by-side */
+#video-comments-wrapper {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+/* Video container takes up main space */
+#video-container {
+  flex: 1;
+  min-width: 0; /* Allows flex item to shrink below content size */
+}
+
+/* Comments container fixed width on the right */
+#comments-container {
+  width: 400px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  position: sticky;
+  top: 80px;
+  flex-shrink: 0;
+}
+
+/* Styling for comments scrollbar */
+#comments-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#comments-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#comments-container::-webkit-scrollbar-thumb {
+  background: #909090;
+  border-radius: 4px;
+}
+
+#comments-container::-webkit-scrollbar-thumb:hover {
+  background: #606060;
+}
+
+/* Ensure video player is responsive */
+#video-container #player {
+  width: 100%;
+}
+
+/* Adjust primary content to use full width */
+body.youtube-side-comments-active #primary {
+  max-width: none !important;
+}
+
+/* Keep secondary content (recommended videos) in its place */
+body.youtube-side-comments-active #secondary {
+  display: block !important;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1280px) {
+  #comments-container {
+    width: 350px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #video-comments-wrapper {
+    flex-direction: column;
+  }
+  
+  #comments-container {
+    width: 100%;
+    max-height: 600px;
+    position: static;
+  }
+}
+
+/* Dark mode support */
+body.youtube-side-comments-active[dark] #comments-container {
+  background: transparent;
+}
+
+/* Ensure comments section styling matches YouTube's theme */
+#comments-container ytd-comments {
+  background: transparent;
+}
+
+/* Fix any potential layout issues */
+#video-container > * {
+  max-width: 100%;
+}
