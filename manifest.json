@@ -2,16 +2,17 @@
   "manifest_version": 3,
   "name": "YouTube Side Comments",
   "version": "1.0",
-  "description": "Redesigns YouTube to show comments alongside the video",
-  "permissions": [
-    "activeTab"
+  "description": "View YouTube comments beside the video while watching",
+  "permissions": [],
+  "host_permissions": [
+    "*://www.youtube.com/*"
   ],
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/watch*"],
       "css": ["styles.css"],
       "js": ["content.js"],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ]
 }
