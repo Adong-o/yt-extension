@@ -14,12 +14,16 @@
 
 /* Comments container fixed width on the right */
 #comments-container {
-  width: 400px;
+  width: 420px;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   position: sticky;
   top: 80px;
   flex-shrink: 0;
+  background: var(--yt-spec-base-background, #0f0f0f);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
 }
 
 /* Styling for comments scrollbar */
@@ -48,6 +52,12 @@
 /* Adjust primary content to use full width */
 body.youtube-side-comments-active #primary {
   max-width: none !important;
+  width: 100% !important;
+}
+
+/* Ensure the page container is wide enough */
+body.youtube-side-comments-active ytd-watch-flexy {
+  max-width: none !important;
 }
 
 /* Keep secondary content (recommended videos) in its place */
@@ -56,6 +66,12 @@ body.youtube-side-comments-active #secondary {
 }
 
 /* Responsive design for smaller screens */
+@media (max-width: 1400px) {
+  #comments-container {
+    width: 380px;
+  }
+}
+
 @media (max-width: 1280px) {
   #comments-container {
     width: 350px;

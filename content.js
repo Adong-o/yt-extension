@@ -1,19 +1,37 @@
 // Wait for YouTube page to fully load
+let retryCount = 0;
+const MAX_RETRIES = 20;
+
 function initSideComments() {
   // Check if already initialized
   if (document.querySelector('#video-comments-wrapper')) {
+    console.log('[YT Side Comments] Already initialized');
     return;
   }
 
   // Get the main elements
   const primaryContent = document.querySelector('#primary');
-  const commentsSection = document.querySelector('#comments');
+  const commentsSection = document.querySelector('ytd-comments#comments');
+  
+  console.log('[YT Side Comments] Looking for elements...', {
+    primary: !!primaryContent,
+    comments: !!commentsSection,
+    retry: retryCount
+  });
   
   if (!primaryContent || !commentsSection) {
     // Retry if elements aren't loaded yet
-    setTimeout(initSideComments, 500);
+    retryCount++;
+    if (retryCount < MAX_RETRIES) {
+      setTimeout(initSideComments, 500);
+    } else {
+      console.log('[YT Side Comments] Max retries reached, giving up');
+    }
     return;
   }
+
+  console.log('[YT Side Comments] Initializing side comments layout...');
+  retryCount = 0; // Reset counter
 
   // Create a wrapper for video and comments
   const videoCommentsWrapper = document.createElement('div');
@@ -54,6 +72,10 @@ function initSideComments() {
     
     // Add class to body for styling
     document.body.classList.add('youtube-side-comments-active');
+    
+    console.log('[YT Side Comments] Successfully initialized!');
+  } else {
+    console.log('[YT Side Comments] Missing player or videoInfo');
   }
 }
 
@@ -70,13 +92,18 @@ new MutationObserver(() => {
   const url = location.href;
   if (url !== lastUrl) {
     lastUrl = url;
+    console.log('[YT Side Comments] URL changed, reinitializing...');
     // Reset the page
     document.body.classList.remove('youtube-side-comments-active');
     const wrapper = document.querySelector('#video-comments-wrapper');
     if (wrapper) {
       wrapper.remove();
     }
+    // Reset retry counter
+    retryCount = 0;
     // Reinitialize
     setTimeout(initSideComments, 1000);
   }
 }).observe(document, { subtree: true, childList: true });
+
+console.log('[YT Side Comments] Extension loaded');
