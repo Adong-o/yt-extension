@@ -13,6 +13,10 @@ This Chrome/Brave extension displays YouTube comments beside the video player in
 - 🎨 **Matches YouTube theme** - Works with dark/light mode
 - 📱 **Responsive** - Adapts to screen size
 - ⚡ **Auto-updates** - Works when navigating between videos
+- 🔘 **Toggle button** - Show/hide comments with one click
+- ⌨️ **Keyboard shortcut** - Press `Ctrl+Shift+C` to toggle
+- 🔔 **Visual feedback** - See when extension activates
+- 🔄 **Multiple retry attempts** - Ensures reliable loading
 
 ---
 
@@ -63,14 +67,19 @@ This Chrome/Brave extension displays YouTube comments beside the video player in
 
 1. Open any YouTube video (e.g., `youtube.com/watch?v=...`)
 2. The extension automatically reorganizes the layout
-3. Comments appear on the right side of the video
-4. Scroll through comments while watching!
+3. You'll see a notification: **"✅ Side Comments Active!"**
+4. Comments appear on the right side of the video
+5. Scroll through comments while watching!
 
-**Tip:** Press `F12` to open browser console and see debug messages like:
-```
-[YT Side Comments] Extension script loaded
-[YT Side Comments] ✅ Successfully initialized!
-```
+### Controls
+
+- **Toggle comments**: Click the "Hide" button in the comments header
+- **Keyboard shortcut**: Press `Ctrl+Shift+C` to show/hide comments
+- **Debug mode**: Press `F12` to see console messages:
+  ```
+  [YT Side Comments] 🚀 Extension loaded v2.0
+  [YT Side Comments] 🎉 Successfully initialized!
+  ```
 
 ---
 

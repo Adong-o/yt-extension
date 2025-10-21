@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube Side Comments",
-  "version": "1.0",
+  "version": "2.0",
   "description": "View YouTube comments beside the video while watching",
   "permissions": [],
   "host_permissions": [
